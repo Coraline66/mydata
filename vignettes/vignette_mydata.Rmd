@@ -1,0 +1,98 @@
+---
+title: "User's Guide for mydata Package"
+author: "Coraline Qu"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document: 
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    highlight: tango
+    df_print: kable
+  fontsize: 11pt
+  geometry: margin=lin
+---
+
+# Introduction
+
+## Description
+
+Package *mydata* is a data package for users to load different data sets. It is composed of six data sets: 
+
+* `luad`, `files_luad`;
+* `brca`, `files_brca`; 
+* `sarc`, `files_sarc`.
+
+"files_luad" and "luad" correspond to TCGA-luad. "files_luad" consists of the original text file names which contain all the information about the data, while "luad" is comprised of the htseq counts matrices for "normal" and "tumor" sample conditions. Similarly, "brca", "files_brca" are data sets with regard to TCGA-brca and "sarc" and "files_sarc" are data sets with regard to TCGA-sarc. It is notable that the sample conditions for TCGA-sarc are "dl(differentiated liposarcoma)" and "lm(leiomyosarcoma)". More information about these data sets will be given in the next chapter.
+
+# Standard workflow
+
+## Example I
+
+After installation, we can load desired data set into current environment via r code as follows.
+
+```{r, echo=TRUE, results='markup'}
+#install.packages("devtools")
+library(devtools)
+#install_github("Coraline66/mydata")
+library(mydata)
+data(package="mydata")
+data(luad)
+data(files_luad)
+dim(files_luad)
+files_luad[1, 1]
+files_luad[dim(files_luad)[1], 1]
+dim(luad)
+luad[1, 1:4]
+luad[1, 115:118]
+```
+
+It is easier for users to figure out what the available data sets are in this package by executing `data(package="mydata")`.  As we can see from the result above, "luad" is a $60488\times 228$ data frame and contains the htseq counts information of `57` pairs of samples. columns "normal_*" and "tumor_*" represent different genes, while columns "normal*" and "tumor*" represent the corresponding htseq counts. Here "*" gives the serial number of patients, e.g., element "normal01_luad.txt" corresponds to the first two columns in data set "luad", `luad[ , 1:2]` equivalently.
+
+## Example II
+
+The second example is about how to load data set of TCGA-brca.
+
+```{r, echo=TRUE, results='markup'}
+library(devtools)
+library(mydata)
+data(brca)
+data(files_brca)
+dim(files_brca)
+files_brca[1, 1]
+files_brca[dim(files_brca)[1], 1]
+dim(brca)
+brca[1, 1:4]
+brca[1, 201:204]
+```
+
+"files_brca" consists of the original file names of `100` patients from TCGA-brca. Information of `60488` genes and counts is stored in a $60488\times 400$ data frame "brca", odd columns of which give gene serial numbers and even columns of which give corresponding counts, e.g., `brca[, 201:202]` refers to the element "tumor01_brca.txt" in "files_brca". 
+
+## Example III
+
+Here is the r code for loading data set of TCGA-sarc.
+
+```{r, echo=TRUE, results='markup'}
+library(devtools)
+library(mydata)
+data(sarc)
+data(files_sarc)
+dim(files_sarc)
+files_sarc[1, 1]
+files_sarc[dim(files_sarc)[1], 1]
+dim(sarc)
+sarc[1, 1:4]
+sarc[1, 117:120]
+```
+
+"files_sarc" consists of the original file names of `162` samples from TCGA-sarc. Note that `58` samples come from liposarcoma and `104` samples come from leiomyosarcoma. Thus, this case differs from the other two above since all samples are from different patients. Information of genes and htseq counts is saved in a $60488\times 324$ data frame "sarc", odd columns of which give gene serial numbers and even columns of which give corresponding counts, e.g., `sarc[, 117:118]` refers to the element "lm059_sarc05.txt" in "files_sarc". 
+
+# Session Info
+
+* R version 3.3.1 (2016-06-21)
+* Platform: x86_64-apple-darwin13.4.0 (64-bit)
+* Locale: 
+    + LC_CTYPE=en_US.UTF-8, LC_NUMERIC=C 
+    + LC_TIME=en_US.UTF-8, LC_COLLATE=en_US.UTF-8 
+    + LC_MONETARY=en_US.UTF-8, LC_MESSAGES=en_US.UTF-8
+* Base packages: devtools
