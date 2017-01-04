@@ -1,0 +1,14 @@
+Package: mydata
+Type: Package
+Title: Load data
+Version: 1.0
+Author: Coraline Qu
+Maintainer: Coraline Qu <qux1@mskcc.org>
+URL: https://github.com/Coraline66/mydata
+Description: Load data sets for further differential gene expression analyses.
+License: GPL-2
+LazyData: TRUE
+RoxygenNote: 5.0.1.9000
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
