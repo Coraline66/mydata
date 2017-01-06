@@ -13,6 +13,8 @@ output:
   geometry: margin=lin
 ---
 
+\newpage
+
 # Introduction
 
 ## Information of raw data
@@ -59,19 +61,23 @@ data(package="mydata")$results[, "Item"]
 data(luad)
 data(files_luad)
 
-# view the first three elements of "files_luad"
+# view the first three elements of "files_luad" referring to condition "normal"
 files_luad[1:3]
 
 # view the first three elements of "files_luad" referring to condition "tumor" 
 files_luad[58:60]
 
+# find out the dimensions of "luad"
+dim(luad[[1]])
+
 # view the first three rows of the first and last element of "luad"
-length(luad[[1]])
+# Column names "normal_*", "tumor_*" represent ensembl id and "normal*", "tumor*"
+# represent htseq counts, "*" is an arbitrary integer.
 luad[[1]][1:3,]
 luad[[length(luad)]][1:3,]
 ```
 
-It is easier for users to figure out what the available data sets are in this package by executing `data(package="mydata")`.  As we can see from the result above, "luad" is a list of length `114`, each of which contains the htseq counts information of `57` pairs of samples. columns "normal_*" and "tumor_*" represent different genes, while columns "normal*" and "tumor*" represent the corresponding htseq counts. Here "*" gives the serial number of patients, e.g., "normal01_luad.txt" in "files_luad" corresponds to the first element of data set "luad", `luad[[1]]` equivalently.
+It is easier for users to figure out what the available data sets are in this package by executing `data(package="mydata")`.  As we can see from the result above, "luad" is a list of length `114`, each of which contains the htseq counts information of `57` pairs of samples. Columns "normal_*" and "tumor_*" represent different genes, while columns "normal*" and "tumor*" represent the corresponding htseq counts. Here "*" gives the serial number of patients, e.g., "normal01_luad.txt" in "files_luad" corresponds to the first element of data set "luad", `luad[[1]]` equivalently.
 
 ## Example II
 
@@ -86,14 +92,18 @@ library(mydata)
 data(brca)
 data(files_brca)
 
-# view the first three elements of "files_brca"
+# view the first three elements of "files_brca" referring to condition "normal"
 files_brca[1:3]
 
 # view the first three elements of "files_brca" referring to condition "tumor" 
 files_brca[101:103]
 
+# find out the dimensions of "brca"
+dim(brca[[1]])
+
 # view the first three rows of the first and last element of "brca"
-length(brca[[1]])
+# Column names "normal_*", "tumor_*" represent ensembl id and "normal*", "tumor*"
+# represent htseq counts, "*" is an arbitrary integer.
 brca[[1]][1:3,]
 brca[[length(brca)]][1:3,]
 ```
@@ -113,14 +123,18 @@ library(mydata)
 data(sarc)
 data(files_sarc)
 
-# view the first three elements of "files_sarc"
+# view the first three elements of "files_sarc" referring to condition "dl"
 files_sarc[1:3]
 
 # view the first three elements of "files_sarc" referring to condition "lm" 
 files_sarc[59:61]
 
+# find out the dimensions of "sarc"
+dim(sarc[[1]])
+
 # view the first three rows of the first and last element of "sarc"
-length(sarc[[1]])
+# Column names "dl_*", "lm_*" represent ensembl id and "dl*", "lm*" 
+# represent htseq counts, "*" is an arbitrary integer.
 sarc[[1]][1:3,]
 sarc[[length(sarc)]][1:3,]
 ```
